@@ -27,12 +27,12 @@ export default function Home() {
     <div className="min-h-screen bg-custom-bg bg-cover bg-center bg-no-repeat p-4 md:p-8">
       <div className="max-w-4xl mx-auto">
         <header className="text-center m-0 mb-6 p-0">
-          <img src="sw-logo.png" className="w-66 h-40 mx-auto m-0" />
+          <img src="sw-logo.png" className="w-69 h-40 mx-auto m-0" />
         </header>
 
         {loading ? (
           <div className="flex justify-center items-center h-64">
-            <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-[#ebaf5b]"></div>
+            <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-[#ffe91f]"></div>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

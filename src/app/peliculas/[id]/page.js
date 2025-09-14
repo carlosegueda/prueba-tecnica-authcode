@@ -1,7 +1,7 @@
-'use client';
-import { useState, useEffect } from 'react';
-import { useParams, useRouter } from 'next/navigation';
-import Link from 'next/link';
+"use client";
+import { useState, useEffect } from "react";
+import { useParams, useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function MovieDetail() {
   const params = useParams();
@@ -12,25 +12,28 @@ export default function MovieDetail() {
   useEffect(() => {
     if (params.id) {
       //Peticion para enlistar peliculas y filtrarlas por ID
-      fetch('https://swapi.info/api/films')
-        .then(response => response.json())
-        .then(data => {
-            //Find para hacer match con el ID
-          const foundMovie = data.find(m => m.episode_id === parseInt(params.id));
+      fetch("https://swapi.info/api/films")
+        .then((response) => response.json())
+        .then((data) => {
+          //Find para hacer match con el ID
+          const foundMovie = data.find(
+            (m) => m.episode_id === parseInt(params.id)
+          );
           if (foundMovie) {
             setMovie(foundMovie);
           } else {
-            router.push('/');
+            router.push("/");
           }
           setLoading(false);
         })
-        .catch(error => {
-          console.error('Error:', error);
+        .catch((error) => {
+          console.error("Error:", error);
           setLoading(false);
         });
     }
   }, [params.id, router]);
 
+  //Circulo de Carga
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -41,7 +44,7 @@ export default function MovieDetail() {
 
   if (!movie) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center">
+      <div className="min-h-screen  flex flex-col items-center justify-center">
         <div className="text-white text-xl mb-4">PELICULA NO ENCONTRADA</div>
         {/* Botón de regreso */}
         <Link href="/" className="text-red">
@@ -52,51 +55,47 @@ export default function MovieDetail() {
   }
 
   return (
-    <div className="min-h-screen p-4 md:p-8">
+    <div className="min-h-screen bg-custom-bg bg-cover bg-center bg-no-repeat p-4 md:p-6">
       <div className="max-w-4xl mx-auto">
-        <header className="text-center mb-10">
-            {/* Botón de regreso */}
-          <Link href="/" className="inline-block mb-6">
+        <header className="text-center  text-[#ffe91f] font-extrabold mb-8">
+          {/* Botón de regreso */}
+          <Link href="/" className="inline-block mb-2">
             &larr; VOLVER
           </Link>
-          <h1 className="text-4xl md:text-5xl font-extrabold mb-2">
+          {/* Titulo de la Pelicula */}
+          <h1 className="uppercase text-[#ffe91f] text-5xl md:text-7xl font-extrabold mb-2">
             {movie.title}
           </h1>
-          <p className="text-red-200">Episodio {movie.episode_id}</p>
+          <p className="text-white text-3xl">EPISODIO {movie.episode_id}</p>
         </header>
 
-        <div className="bg-gray-900 bg-opacity-70 backdrop-blur-sm rounded-xl p-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        {/* Detalle de la Película */}
+        <div className="bg-transparent bg-opacity-90 backdrop-blur p-8 border-4 rounded-2xl border-[#ffe91f]">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+            {/* Director */}
             <div>
-              <h2 className=" font-bold mb-2">Director</h2>
-              <p className="text-white">{movie.director}</p>
+              <h2 className="text-2xl font-bold mb-1 text-white">Director</h2>
+              <p className="text-white text-lg">{movie.director}</p>
+            </div>
+            {/* Productor */}
+            <div>
+              <h2 className="text-2xl font-bold mb-1 text-white">Productor</h2>
+              <p className="text-white text-xl">{movie.producer}</p>
             </div>
             <div>
-              <h2 className=" font-bold mb-2">Productor</h2>
-              <p className="text-white">{movie.producer}</p>
+              <h2 className="text-2xl font-bold mb-1 text-white">
+                Fecha de estreno
+              </h2>
+              <p className="text-white text-xl">{movie.release_date}</p>
             </div>
           </div>
+          {/* Fecha de Estreno */}
 
-          <div className="mb-6">
-            <h2 className="font-bold mb-2">Fecha de estreno</h2>
-            <p className="text-white">{movie.release_date}</p>
-          </div>
-
-          <div className="mb-6">
-            <h2 className="font-bold mb-2">Opening Crawl</h2>
+          {/* Opening Crawl */}
+          <div className="mb-4 mx-8">
+            <h2 className="text-2xl font-bold mb-2 text-white">Opening Crawl</h2>
             <div className="bg-black">
-              <p className="text-white italic">{movie.opening_crawl}</p>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <h3 className="mb-2">Personajes</h3>
-              <p className="text-white">{movie.characters?.length || 0}</p>
-            </div>
-            <div>
-              <h3 className="mb-2">Planetas</h3>
-              <p className="text-white">{movie.planets?.length || 0}</p>
+              <p className=" text-justify text-[#ffe91f] italic text-xl">{movie.opening_crawl}</p>
             </div>
           </div>
         </div>
