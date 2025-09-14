@@ -1,101 +1,78 @@
-"use client";
-import { useState, useEffect } from "react";
-import { useParams, useRouter } from "next/navigation";
+import { notFound } from "next/navigation";
 import Link from "next/link";
+import { getMovieById } from "../../actions/movies";
+import {
+  ArrowBigLeftDash,
+  Videotape,
+  Clapperboard,
+  Calendar1,
+} from "lucide-react";
 
-export default function MovieDetail() {
-  const params = useParams();
-  const router = useRouter();
-  const [movie, setMovie] = useState(null);
-  const [loading, setLoading] = useState(true);
+export default async function MovieDetail({ params }) {
+  const { id } = await params;
 
-  useEffect(() => {
-    if (params.id) {
-      //Peticion para enlistar peliculas y filtrarlas por ID
-      fetch("https://swapi.info/api/films")
-        .then((response) => response.json())
-        .then((data) => {
-          //Find para hacer match con el ID
-          const foundMovie = data.find(
-            (m) => m.episode_id === parseInt(params.id)
-          );
-          if (foundMovie) {
-            setMovie(foundMovie);
-          } else {
-            router.push("/");
-          }
-          setLoading(false);
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-          setLoading(false);
-        });
-    }
-  }, [params.id, router]);
+  let movie = null;
+  let error = null;
 
-  //Circulo de Carga
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-16 w-16"></div>
-      </div>
-    );
+  try {
+    movie = await getMovieById(id);
+  } catch (err) {
+    error = err.message;
   }
 
-  if (!movie) {
-    return (
-      <div className="min-h-screen  flex flex-col items-center justify-center">
-        <div className="text-white text-xl mb-4">PELICULA NO ENCONTRADA</div>
-        {/* Botón de regreso */}
-        <Link href="/" className="text-red">
-          ← VOLVER
-        </Link>
-      </div>
-    );
+  if (error || !movie) {
+    notFound();
   }
 
   return (
-    <div className="min-h-screen bg-custom-bg bg-cover bg-center bg-no-repeat p-4 md:p-6">
+    <div className="min-h-screen bg-custom-bg bg-cover bg-center bg-no-repeat px-4 pb-0 pt-4 md:pt-4">
       <div className="max-w-4xl mx-auto">
-        <header className="text-center  text-[#ffe91f] font-extrabold mb-8">
-          {/* Botón de regreso */}
-          <Link href="/" className="inline-block mb-2">
-            &larr; VOLVER
+        <header className="text-center text-[#ffe91f] font-extrabold mb-8">
+          <Link
+            href="/"
+            className="inline-flex items-center mb-2  transform transition-all duration-300 cursor-pointer hover:scale-125 hover:shadow-white-500/20"
+          >
+            <ArrowBigLeftDash className="mr-2" />
+            VOLVER
           </Link>
-          {/* Titulo de la Pelicula */}
           <h1 className="uppercase text-[#ffe91f] text-5xl md:text-7xl font-extrabold mb-2">
             {movie.title}
           </h1>
           <p className="text-white text-3xl">EPISODIO {movie.episode_id}</p>
         </header>
 
-        {/* Detalle de la Película */}
         <div className="bg-transparent bg-opacity-90 backdrop-blur p-8 border-4 rounded-2xl border-[#ffe91f]">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-            {/* Director */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
             <div>
-              <h2 className="text-2xl font-bold mb-1 text-white">Director</h2>
-              <p className="text-white text-lg">{movie.director}</p>
-            </div>
-            {/* Productor */}
-            <div>
-              <h2 className="text-2xl font-bold mb-1 text-white">Productor</h2>
-              <p className="text-white text-xl">{movie.producer}</p>
-            </div>
-            <div>
-              <h2 className="text-2xl font-bold mb-1 text-white">
-                Fecha de estreno
+              <h2 className="flex text-2xl font-bold mb-1 text-white">
+                DIRECTOR
               </h2>
-              <p className="text-white text-xl">{movie.release_date}</p>
+              <p className="flex text-white text-lg text-center"><Videotape className="text-white mx-2" />{movie.director}</p>
+            </div>
+            <div>
+              <h2 className="flex text-2xl font-bold mb-1 text-white">
+                
+                PRODUCTOR
+              </h2>
+              <p className="flex text-white text-xl"><Clapperboard className="text-white mx-2" />{movie.producer}</p>
+            </div>
+            <div>
+              <h2 className="flex text-2xl font-bold mb-1 text-white">
+                
+                FECHA DE ESTRENO
+              </h2>
+              <p className="flex text-white text-xl"><Calendar1 className="text-white mx-2"/>{movie.release_date}</p>
             </div>
           </div>
-          {/* Fecha de Estreno */}
 
-          {/* Opening Crawl */}
           <div className="mb-4 mx-8">
-            <h2 className="text-2xl font-bold mb-2 text-white">Opening Crawl</h2>
-            <div className="bg-black">
-              <p className=" text-justify text-[#ffe91f] italic text-xl">{movie.opening_crawl}</p>
+            <h2 className="text-2xl font-bold mb-2 text-white">
+              OPENING CRAWL
+            </h2>
+            <div className="bg-black overflow-hidden relative border border-yellow-500/30 rounded-sm px-6">
+              <p className="animate-marquee-vertical text-justify text-[#ffe91f] italic text-xl px-6">
+                {movie.opening_crawl}
+              </p>
             </div>
           </div>
         </div>
