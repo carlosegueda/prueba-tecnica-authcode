@@ -1,3 +1,10 @@
+//imports
+/**
+ * notFound para mostrar error404
+ * Link para navegar entre rutas
+ * getMovieById de movies.js, para utilizar dicha función
+ * Icons de Lucide-react
+ */
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getMovieById } from "../../actions/movies";
@@ -25,9 +32,12 @@ export default async function MovieDetail({ params }) {
   }
 
   return (
+    // Div Principal
     <div className="min-h-screen bg-custom-bg bg-cover bg-center bg-no-repeat px-4 pb-0 pt-4 md:pt-4">
       <div className="max-w-4xl mx-auto">
+        {/* Encabezado */}
         <header className="text-center text-[#ffe91f] font-extrabold mb-8">
+          {/* Boton de Volver */}
           <Link
             href="/"
             className="inline-flex items-center mb-2  transform transition-all duration-300 cursor-pointer hover:scale-125 hover:shadow-white-500/20"
@@ -35,36 +45,49 @@ export default async function MovieDetail({ params }) {
             <ArrowBigLeftDash className="mr-2" />
             VOLVER
           </Link>
+          {/* Titulo de la Pelicula */}
           <h1 className="uppercase text-[#ffe91f] text-5xl md:text-7xl font-extrabold mb-2">
             {movie.title}
           </h1>
+          {/* Numero de Episodio */}
           <p className="text-white text-3xl">EPISODIO {movie.episode_id}</p>
         </header>
-
+        {/* Detalle de la Pelicula */}
         <div className="bg-transparent bg-opacity-90 backdrop-blur p-8 border-4 rounded-2xl border-[#ffe91f]">
+          {/* Sección de Productor, Director y Fecha */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+            {/* Director */}
             <div>
               <h2 className="flex text-2xl font-bold mb-1 text-white">
                 DIRECTOR
               </h2>
-              <p className="flex text-white text-lg text-center"><Videotape className="text-white mx-2" />{movie.director}</p>
+              <p className="flex text-white text-lg text-center">
+                <Videotape className="text-white mx-2" />
+                {movie.director}
+              </p>
             </div>
+            {/* Productor */}
             <div>
               <h2 className="flex text-2xl font-bold mb-1 text-white">
-                
                 PRODUCTOR
               </h2>
-              <p className="flex text-white text-xl"><Clapperboard className="text-white mx-2" />{movie.producer}</p>
+              <p className="flex text-white text-xl">
+                <Clapperboard className="text-white mx-2" />
+                {movie.producer}
+              </p>
             </div>
+            {/* Fecha de Estreno */}
             <div>
               <h2 className="flex text-2xl font-bold mb-1 text-white">
-                
                 FECHA DE ESTRENO
               </h2>
-              <p className="flex text-white text-xl"><Calendar1 className="text-white mx-2"/>{movie.release_date}</p>
+              <p className="flex text-white text-xl">
+                <Calendar1 className="text-white mx-2" />
+                {movie.release_date}
+              </p>
             </div>
           </div>
-
+          {/* Div de Opening Crawl */}
           <div className="mb-4 mx-8">
             <h2 className="text-2xl font-bold mb-2 text-white">
               OPENING CRAWL

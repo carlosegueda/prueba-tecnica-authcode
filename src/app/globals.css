@@ -19,6 +19,7 @@
   }
 }
 
+/* Animación para el Crawl que simula el Crawl Original de las películas de Star Wars */
 .animate-marquee-vertical {
   animation: marquee-vertical 12s linear infinite;
 }

@@ -1,3 +1,8 @@
+//imports
+/**
+ * Link, para manejar rutas
+ * getMovies de movies.js, para utilizar dicha función
+ */
 import Link from "next/link";
 import { getMovies } from "./actions/movies";
 
