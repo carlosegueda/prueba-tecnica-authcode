@@ -8,12 +8,14 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getMovieById } from "../../actions/movies";
+//Uso de la librería LUCIDE para los icons
 import {
   ArrowBigLeftDash,
   Videotape,
   Clapperboard,
   Calendar1,
 } from "lucide-react";
+
 
 export default async function MovieDetail({ params }) {
   const { id } = await params;
@@ -92,6 +94,7 @@ export default async function MovieDetail({ params }) {
             <h2 className="text-2xl font-bold mb-2 text-white">
               OPENING CRAWL
             </h2>
+            {/* Div que simula el Opening Crawl de las películas de StarWars */}
             <div className="h-[300px] px-2 md:h-full bg-black overflow-hidden relative border border-yellow-500/30 rounded-sm md:px-16">
               <p className="animate-marquee-vertical px-1 text-justify text-[#ffe91f] italic text-xl md:px-6">
                 {movie.opening_crawl}
