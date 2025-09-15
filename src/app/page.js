@@ -21,10 +21,10 @@ export default async function Home() {
     <div className="min-h-screen bg-custom-bg bg-cover bg-center bg-no-repeat p-2 sm:p-4 md:p-8">
       <div className="max-w-4xl mx-auto">
         {/* Logo de StarWars */}
-        <header className="text-center mb-4 sm:mb-6">
+        <header className="text-center mb-4 sm:mb-6 hover:scale-105 transform transition-all duration-200">
           <img
             src="sw-logo.png"
-            className="mt-4 md:mt-0 w-40 h-20 sm:w-56 sm:h-28 md:w-2/5 md:h-auto mx-auto"
+            className="mt-2 md:mt-0 w-40 h-20 sm:w-56 sm:h-28 md:w-2/5 md:h-auto mx-auto"
           />
         </header>
 

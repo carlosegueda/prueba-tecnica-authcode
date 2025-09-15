@@ -33,7 +33,7 @@ export default async function MovieDetail({ params }) {
 
   return (
     // Div Principal
-    <div className="min-h-screen bg-custom-bg bg-cover bg-center bg-no-repeat px-4 pb-0 pt-4 md:pt-4">
+    <div className="min-h-screen bg-custom-bg bg-cover bg-center bg-no-repeat px-4 pb-4 pt-4 md:pt-4">
       <div className="max-w-5xl mx-auto">
         {/* Encabezado */}
         <header className="text-center text-[#ffe91f] font-extrabold mb-6">
