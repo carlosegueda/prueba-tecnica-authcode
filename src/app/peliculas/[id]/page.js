@@ -15,7 +15,6 @@ import {
   Calendar1,
 } from "lucide-react";
 
-
 export default async function MovieDetail({ params }) {
   const { id } = await params;
 
@@ -89,12 +88,12 @@ export default async function MovieDetail({ params }) {
             </div>
           </div>
           {/* Div de Opening Crawl */}
-          <div className="mb-4 mx-8">
+          <div className="mb-4 mx-1 md:mx-8">
             <h2 className="text-2xl font-bold mb-2 text-white">
               OPENING CRAWL
             </h2>
-            <div className="h-2/3 md:h-full bg-black overflow-hidden relative border border-yellow-500/30 rounded-sm px-6">
-              <p className="animate-marquee-vertical text-justify text-[#ffe91f] italic text-xl px-6">
+            <div className="h-[300px] px-2 md:h-full bg-black overflow-hidden relative border border-yellow-500/30 rounded-sm md:px-6">
+              <p className="animate-marquee-vertical px-1 text-justify text-[#ffe91f] italic text-xl md:px-6">
                 {movie.opening_crawl}
               </p>
             </div>
