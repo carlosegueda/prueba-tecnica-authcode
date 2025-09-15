@@ -34,9 +34,9 @@ export default async function MovieDetail({ params }) {
   return (
     // Div Principal
     <div className="min-h-screen bg-custom-bg bg-cover bg-center bg-no-repeat px-4 pb-0 pt-4 md:pt-4">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-5xl mx-auto">
         {/* Encabezado */}
-        <header className="text-center text-[#ffe91f] font-extrabold mb-8">
+        <header className="text-center text-[#ffe91f] font-extrabold mb-6">
           {/* Boton de Volver */}
           <Link
             href="/"
@@ -46,7 +46,7 @@ export default async function MovieDetail({ params }) {
             VOLVER
           </Link>
           {/* Titulo de la Pelicula */}
-          <h1 className="uppercase text-[#ffe91f] text-5xl md:text-7xl font-extrabold mb-2">
+          <h1 className="uppercase w-full text-[#ffe91f] text-5xl md:text-7xl font-extrabold mb-2">
             {movie.title}
           </h1>
           {/* Numero de Episodio */}
@@ -92,7 +92,7 @@ export default async function MovieDetail({ params }) {
             <h2 className="text-2xl font-bold mb-2 text-white">
               OPENING CRAWL
             </h2>
-            <div className="h-[300px] px-2 md:h-full bg-black overflow-hidden relative border border-yellow-500/30 rounded-sm md:px-6">
+            <div className="h-[300px] px-2 md:h-full bg-black overflow-hidden relative border border-yellow-500/30 rounded-sm md:px-16">
               <p className="animate-marquee-vertical px-1 text-justify text-[#ffe91f] italic text-xl md:px-6">
                 {movie.opening_crawl}
               </p>

@@ -5,7 +5,7 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        'custom-bg': "url('/starbg.jpeg')",
+        'custom-bg': "url('/starbg.png')",
       }
     },
   },
