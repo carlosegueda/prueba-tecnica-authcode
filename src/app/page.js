@@ -23,7 +23,7 @@ export default async function Home() {
         {/* Logo de StarWars */}
         <header className="text-center mb-4 sm:mb-6 hover:scale-105 transform transition-all duration-200">
           <img
-            src="sw-logo.png"
+            src="/sw-logo.png"
             className="mt-2 md:mt-0 w-40 h-20 sm:w-56 sm:h-28 md:w-2/5 md:h-auto mx-auto"
           />
         </header>
